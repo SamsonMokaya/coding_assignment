@@ -2,7 +2,7 @@
 
 Algorithm
 
-## The algorithm for generating a random password follows these steps:
+## Random password generator algorithm:
 
     Initialization:
         The algorithm initializes an empty string to store the generated password.
