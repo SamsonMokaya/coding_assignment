@@ -96,10 +96,9 @@ app.post("/generate-password", (req, res) => {
   res.json({ password });
 });
 
-
 //decode message
-app.get("/decode-message", (req, res) => {
-  const filePath = req.query.file || "./message.txt";
+app.get("/decode", (req, res) => {
+  const filePath = "./message.txt";
   const decodedMessage = decodeMessage(filePath);
   res.json({ decodedMessage });
 });
@@ -127,9 +126,6 @@ function decodeMessage(messageFile) {
   const text = messageWords.filter((word) => word !== "").join(" ");
   return text;
 }
-
-
-
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

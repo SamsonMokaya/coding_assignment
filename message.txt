@@ -1,15 +1,8 @@
+3 love
+
+6 computers
+
+2 dogs
+4 cats
 1 I
-2 love
-3 JavaScript
-4 programming
-5 in
-6 Node.js
-7 and
-8 Express
-9 is
-10 fun
-11 to
-12 work
-13 with
-14 for
-15 webdevelopment
+5 you
