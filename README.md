@@ -27,4 +27,8 @@ Algorithm
         Finally, the shuffled characters are concatenated to form the final password.
 
 ## Decoding function
-    This function reads a text file containing lines with a number followed by a word. It interprets these lines as forming a "pyramid" structure, where each line adds one more number than the previous one. The function then extracts the word associated with the last number on each "pyramid" line. Finally, it concatenates these words together, effectively decoding the hidden message represented by the numbers and words in the file.
+    This function reads a text file containing lines with a number followed by a word. 
+    It interprets these lines as forming a "pyramid" structure, where each line adds one
+    more number than the previous one. The function then extracts the word associated with
+    the last number on each "pyramid" line. Finally, it concatenates these words together
+    effectively decoding the hidden message represented by the numbers and words in the file.
