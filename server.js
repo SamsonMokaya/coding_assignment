@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
+const fs = require("fs");
 
 app.use(bodyParser.json());
 
@@ -93,6 +94,39 @@ app.post("/generate-password", (req, res) => {
   const password = passwordGenerator.generatePassword();
   res.json({ password });
 });
+
+app.get("/decode-message", (req, res) => {
+  const filePath = req.query.file || "./message.txt"; // Default file path if not provided in the query
+  const decodedMessage = decodeMessage(filePath);
+  res.json({ decodedMessage });
+});
+
+function decodeMessage(messageFile) {
+  const lines = fs.readFileSync(messageFile, "utf8").trim().split("\n");
+  const messageWords = [];
+
+  for (let x = 0; x < 100; x++) {
+    messageWords.push("");
+  }
+
+  lines.forEach((line) => {
+    const [number, word] = line.split(" ");
+    const lineNumber = parseInt(number);
+
+    for (let x = 0; x < 100; x++) {
+      if (lineNumber === (x * (x + 1)) / 2) {
+        messageWords[x] = word;
+        break;
+      }
+    }
+  });
+
+  const text = messageWords.filter((word) => word !== "").join(" ");
+  return text;
+}
+
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
