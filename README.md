@@ -1,1 +1,27 @@
 # coding_assignment
+
+Algorithm
+
+## The algorithm for generating a random password follows these steps:
+
+    Initialization:
+        The algorithm initializes an empty string to store the generated password.
+        It determines the available characters based on the specified criteria, including uppercase letters, lowercase letters, numbers, and special characters.
+
+    Validation:
+        The algorithm checks if at least one type of character (uppercase, lowercase, numbers, or special) is required for the password generation.
+        If none are required, the algorithm returns an empty string, as there are no criteria to generate a password.
+
+    Length Determination:
+        The algorithm randomly determines the length of the password within the specified range (minimum and maximum length).
+
+    Character Selection:
+        For each character position in the password, the algorithm randomly selects a character from the available characters determined earlier.
+        This ensures that the password includes characters from the specified criteria.
+
+    Shuffling:
+        After selecting the characters, the algorithm shuffles them to improve randomness.
+        This is done using the Fisher-Yates shuffle algorithm, ensuring that the characters are distributed randomly throughout the password.
+
+    Password Formation:
+        Finally, the shuffled characters are concatenated to form the final password.
