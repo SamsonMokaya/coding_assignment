@@ -32,4 +32,5 @@ Algorithm
     more number than the previous one. The function then extracts the word associated with
     the last number on each "pyramid" line. Finally, it concatenates these words together
     effectively decoding the hidden message represented by the numbers and words in the file.
-    NB: The function assumes that the numbers are in a chronological order but placed randomly in the file.
+    NB: The function assumes that the numbers are in a chronological order but placed
+    randomly in the file.
