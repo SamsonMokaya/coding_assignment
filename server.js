@@ -80,6 +80,7 @@ class RandomPasswordGenerator {
   }
 }
 
+//generate password
 app.post("/generate-password", (req, res) => {
   const { upper, lower, numbers, special, minLength, maxLength } = req.body;
   const passwordGenerator = new RandomPasswordGenerator(
@@ -95,8 +96,10 @@ app.post("/generate-password", (req, res) => {
   res.json({ password });
 });
 
+
+//decode message
 app.get("/decode-message", (req, res) => {
-  const filePath = req.query.file || "./message.txt"; // Default file path if not provided in the query
+  const filePath = req.query.file || "./message.txt";
   const decodedMessage = decodeMessage(filePath);
   res.json({ decodedMessage });
 });
