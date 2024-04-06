@@ -98,24 +98,31 @@ app.post("/generate-password", (req, res) => {
 
 //decode message
 app.get("/decode", (req, res) => {
-  const filePath = "./message.txt";
+  const filePath = "./cr.txt";
   const decodedMessage = decodeMessage(filePath);
   res.json({ decodedMessage });
 });
 
 function decodeMessage(messageFile) {
   const lines = fs.readFileSync(messageFile, "utf8").trim().split("\n");
+
+  // Filter out empty lines and lines with NaN values
+  const filteredLines = lines.filter((line) => {
+    const [number] = line.split(" ");
+    return !isNaN(number);
+  });
+
   const messageWords = [];
 
   for (let x = 0; x < 100; x++) {
     messageWords.push("");
   }
 
-  lines.forEach((line) => {
+  filteredLines.forEach((line) => {
     const [number, word] = line.split(" ");
     const lineNumber = parseInt(number);
 
-    for (let x = 0; x < 100; x++) {
+    for (let x = 0; x < filteredLines.length; x++) {
       if (lineNumber === (x * (x + 1)) / 2) {
         messageWords[x] = word;
         break;
@@ -124,7 +131,8 @@ function decodeMessage(messageFile) {
   });
 
   const text = messageWords.filter((word) => word !== "").join(" ");
-  return text;
+  const decodedMessage = text.replace(/\r/g, ""); // Remove carriage return characters
+  return decodedMessage;
 }
 
 app.listen(port, () => {
