@@ -1,6 +1,14 @@
 1 I
 2 dogs
 3 love
-6 computers
+8 computers
 4 cats
-5 you
+6 you
+20 yes
+27 yellow
+30 no
+38 green
+44 jlfe
+51 blue
+55 red
+21 1eo

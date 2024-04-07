@@ -573,11 +573,8 @@
 221 thus
 
 173 farm
-
 9 oxygen
-
 207 fire
-
 70 force
 
 195 select

@@ -112,26 +112,51 @@ function decodeMessage(messageFile) {
     return !isNaN(number);
   });
 
-  const messageWords = [];
+  // Remove '\r' characters from each line
+  const cleanedLines = filteredLines
+    .map((line) => line.replace(/\r/g, ""))
+    .filter(Boolean);
 
-  for (let x = 0; x < 100; x++) {
-    messageWords.push("");
-  }
-
-  filteredLines.forEach((line) => {
-    const [number, word] = line.split(" ");
-    const lineNumber = parseInt(number);
-
-    for (let x = 0; x < filteredLines.length; x++) {
-      if (lineNumber === (x * (x + 1)) / 2) {
-        messageWords[x] = word;
-        break;
-      }
-    }
+  const sortedLines = cleanedLines.sort((a, b) => {
+    const [numberA] = a.split(" ");
+    const [numberB] = b.split(" ");
+    return parseInt(numberA) - parseInt(numberB);
   });
 
-  const text = messageWords.filter((word) => word !== "").join(" ");
-  const decodedMessage = text.replace(/\r/g, ""); // Remove carriage return characters
+  // Determine the number of rows for the pyramid
+  const numRows = Math.ceil(Math.sqrt(2 * sortedLines.length + 0.25) - 0.5);
+
+  // Initialize an array to represent the pyramid structure
+  const pyramid = [];
+  for (let i = 0; i < numRows; i++) {
+    pyramid.push(Array(i + 1).fill(""));
+  }
+
+  // Populate the pyramid array with the sorted lines
+  let index = 0;
+  for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col <= row; col++) {
+      if (index < sortedLines.length) {
+        pyramid[row][col] = sortedLines[index++];
+      }
+    }
+  }
+
+  // Select the far-right numbers from the pyramid as indexes
+  const farRightIndexes = pyramid
+    .map((row) => row[row.length - 1])
+    .filter(Boolean);
+
+  // Get the words corresponding to the far-right indexes
+  const selectedWords = farRightIndexes.map((item) => {
+    const parts = item.split(" ");
+    return parts.slice(1).join(" ");
+  });
+
+  // Join the selected words into a single string
+  const decodedMessage = selectedWords.join(" ");
+
+  // Return the decoded message
   return decodedMessage;
 }
 
